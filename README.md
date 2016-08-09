@@ -1,5 +1,5 @@
 # Houston - Yet Another Web Boilerplate
-*Version 0.1.0 - **Beta***
+*Version 0.1.0 - Beta*
 
 Houston is a simple web boilerplate built to help get projects off the ground quickly. It tries to make as few assumptions as possible, while still providing enough of a head-start to make it worthwhile.
 
@@ -12,7 +12,7 @@ A few things you'll need:
 
 ## Getting Started
 
-1. Clone this repo, and name it ```$ git clone {{url}} my-folder-name```
+1. Clone this repo, and name it ```$ git clone https://github.com/jsengstrom/houston my-folder-name```
 -  Change directory into the project folder ```$ cd my-folder-name```
 -  Install Node Package Manager (and all the packages) ```$ npm install```
 -  Start grunt with a static server (http://localhost:8888) ```$ grunt serve &``` or just watch the sass/js files without a server ```$ grunt watch &```
