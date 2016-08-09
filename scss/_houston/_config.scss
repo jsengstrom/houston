@@ -1,0 +1,174 @@
+//  ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****  //
+//  ***** ***** *****                                     ***** ***** *****  //
+//  ***** ***** *****           PROJECT CONFIG            ***** ***** *****  //
+//  ***** ***** *****                                     ***** ***** *****  //
+//  ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****  //
+
+//  Think of this file as the project mothership. It contains all of the
+//  variables and values that get used over and over again in your CSS.
+//
+//  [_1_] TYPOGRAPHY
+//  [_2_] COLORS
+//  [_3_] GRID
+//  [_4_] BREAKPOINTS
+//  [_5_] PATHS
+
+
+//  ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****  //
+
+
+//  [_1_] TYPOGRAPHY  //
+
+//  Set your font stack here, calling families and their fallbacks as required.
+//  You are responsible for including the @font-face calls via your preferred
+//  method (personally I like to copy them directly to fonts.scss). The default
+//  font is the first in the list and there must be at least one.
+//
+//  Fonts within the map have the class '.font--{key}' generated.
+
+$font_stack: (
+  base: #{'Verdana', sans-serif},
+  alt:  #{'Georgia', serif},
+  mono: #{'Monaco', monospace}
+);
+
+//  By default font sizes are calculated using a typescale for better typography
+//  (see http://webtypography.net/3.1.1 or http://www.modularscale.com for more).
+//  This feature can be turned off below. When set to true, the type scale is
+//  calculated via $font_ratio - common ratios include:
+//
+//  * 1.125 - major second
+//  * 1.333 - perfect fourth
+//  * 1.5   - perfect fifth
+//  * 1.618 - golden ratio
+
+$use_type_scale: true;
+$font_ratio: 1.333;
+
+//  Set the default type size for the site in rems. Units have been recalculated
+//  throughout the site so that 1rem == 10px.
+
+$font_base:  1.6;
+
+//  When $use_type_scale is enabled, the base line hieght is calculated globally
+//  in rem units to preserve the baseline grid. If this feature is turned off,
+//  line height is unitless, so becomes (x) * (current font size).
+
+$line_height_base: 2;
+
+//  Set font sizes for key elements below (<p> inherits $font_base). By default
+//  the number refers to it's position on the type scale. If $use_type_scale is
+//  set to false it refers to a unitless rem unit. In this case comment out the
+//  first map and uncomment the second.
+
+//  Uncomment below if $use_type_scale = true
+$font_sizes: (
+  h1: 3,
+  h2: 3,
+  h3: 2,
+  h4: 1,
+  h5: 0,
+  h6: 0,
+  l:  1,
+  s:  -1
+);
+
+//  Uncomment below if $use_type_scale = false
+// $font_sizes: (
+//   h1: 3.2,
+//   h2: 3.2,
+//   h3: 2.6,
+//   h4: 2.2,
+//   h5: 1.6,
+//   h6: 1.6,
+//   l:  2.2,
+//   s:  1.1
+// );
+
+
+//  ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****  //
+
+
+//  [_2_} COLORS  //
+
+//  Project colors are specified here. Add and remove colors to the map as
+//  required. First item is default. There must be  at least one color, but
+//  for best support use: primary, accent, dark & notify-warning.
+//
+//  Colors have two classes generated:
+//
+//  .color--{key} = applies text color
+//  .bg--{key} = applied background color
+
+$colors: (
+  primary:        #b79a6f,
+  secondary:      #9BC1BC,
+  accent:         #ED6A5A,
+  neutral:        #DBD9DD,
+  dark:           #595959,
+  notify-failed:  #BE4C4C,
+  notify-warning: #EAC282,
+  notify-success: #8CC36E
+);
+
+
+//  ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****  //
+
+
+//  [_3_] BREAKPOINTS  //
+
+//  Set the units by which horizontal elements are measured. This includes
+//   gutters, containers and breakpoints. By default this is set to ems.
+//
+//  Remember, 1em == 10px
+
+$h_units: em;
+
+//  Breakpoint values are used for both the media queries mixin and the grid
+//  system. The map below sets out the available media queries, with a positive
+//  number creating a min-width query and a negative number a max-width one.
+
+$breakpoints: (
+  palm:     -49.9,
+  lap:      50,
+  portable: 80,
+  desk:     110
+);
+
+//  ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****  //
+
+
+//  [_3_] GRID  //
+
+//  Set the default gutter width via the setting below (uses $h_units).
+
+$grid_gutter: 1.6;
+
+//  The grid system leaves a number of flexbox mixins available for use (read
+//  through base/grid.scss) to learn more. Here you can set any default grid
+//  patterns as required (common layouts have been provided).
+//
+//  This map produces the class: .grid--{key}
+//
+//  Syntax: key, 'col_pattern', (bp: 'bp_col_pattern', ...)
+
+$set_grids: (
+  (halves,   '1',   (lap: '1/2') ),
+  (thirds,   '1',   (portable: '1/3') ),
+  (quarters, '1',   (lap: '1/2', portable: '1/4') ),
+  (aside,    '1 1', (portable: '2/3 1/3') )
+);
+
+//  Containers set within the map below are based on the $h_unit measurement
+//  First item becomes default. The following class is generated:
+//
+//  .container--{key} = applies max width (base == '.container')
+
+$containers: (
+  base:  80,
+  small: 60,
+  large: 100,
+);
+
+
+//  ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****  //

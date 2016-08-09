@@ -1,0 +1,281 @@
+
+//  ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****  //
+//  ***** ***** *****                                     ***** ***** *****  //
+//  ***** ***** *****                GRID                 ***** ***** *****  //
+//  ***** ***** *****                                     ***** ***** *****  //
+//  ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****  //
+
+//  A grid system making use of flexbox. Does not autoprefix anything.
+//  For best browser support you need to be using Autoprefixer
+//  (https://github.com/postcss/autoprefixer)
+//
+//  To learn more about flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+//  & https://philipwalton.github.io/solved-by-flexbox/demos/grids/
+//
+//  [_1_] MIXINS
+//  [_2_] SETUP
+//  [_3_] WIDTHS
+//  [_4_] SET GRIDS
+
+
+//  ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****  //
+
+
+//  [_1_] MIXINS  //
+
+//  The grid system is, first and formost, a series of mixins that allow for
+//  quick use of flexbox selectors to build a grid.
+
+//  The `grid` mixin generates the container that will display the
+//  indivdual columns (child) elements.
+//
+//  There are three variables:
+//
+//  $dis: controls `display:`
+//  values: flex (default) | inline-flex
+//
+//  $dir: controls `flex-direction:`
+//  values: row (default) | row-reverse | column | column-reverse
+//
+//  $wrap: controls `flex-wrap:`
+//  values: wrap (default) | no-wrap | wrap-reverse
+
+@mixin grid($dis: flex, $dir: row, $wrap: wrap) {
+	display: $dis;
+	flex-flow: $dir $wrap;
+
+  > * { flex: 0; }
+}
+
+//  The `grid-align` mixin controls the alignment behavior of the
+//  grid where default values are not suitable.
+//
+//  There are three variables:
+//
+//  $jc: controls `justify-content:`
+//  values: flex-start (defualt) | flex-end | center | space-between | space-around
+//
+//  $ai: controls `align-items:`
+//  values: flex-start | flex-end | center | baseline | stretch (default)
+//
+//  $ac: controls `align-content:`
+//  values: flex-start | flex-end | center | space-between | space-around | stretch (default)
+
+@mixin grid-align($jc: null, $ai: null, $ac: null) {
+	@if($jc != null) {
+		justify-content: $jc;
+	}
+
+	@if($ai != null) {
+		align-items: $ai;
+	}
+
+	@if($ac != null) {
+		align-content: $ac;
+	}
+}
+
+//  The `grid-gutter` mixin controls the base gutter for that grid container.
+
+@mixin grid-gutter($g: $grid_gutter, $child_class: '*') {
+  margin-left: -($g + $h_units);
+
+  > #{$child_class} { padding-left: $g + $h_units; }
+}
+
+//  The `flex` mixin modifies the behavior of an element that is a direct child
+//  of a grid container (a column).
+//
+//  It takes three variables:
+//
+//  $fg: controls `flex-grow:`
+//  values: number (positive only)
+//
+//  $fs: controls `flex-shrink:` (optional)
+//  values: number (positive only)
+//
+//  $fb: controls `flex-basis:` (optional)
+//  values: auto (default) | length
+
+@mixin flex($fg: 0, $fs: null, $fb: null) {
+	flex: $fg $fs $fb;
+}
+
+
+//  ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****  //
+
+
+//  [_2_] SETUP  //
+
+//  This sets up the base styles for the set grids as defined in config.scss
+
+[class*="grid--"] {
+  @include grid;
+	@include grid-gutter($grid_gutter, '.grid__item');
+
+  // Half `$grid_gutter`
+  &.grid--narrow { @include grid-gutter(($grid_gutter / 2), '.grid__item'); }
+  // Double `$grid_gutter`
+  &.grid--wide { @include grid-gutter(($grid_gutter * 2), '.grid__item'); }
+  // Zero `$grid_gutter`
+  &.grid--full { @include grid-gutter(0, '.grid__item'); }
+
+  // Align right
+  &.grid--right { @include grid-align(flex-end); }
+  // Align center
+  &.grid--center { @include grid-align(center); }
+  // RTL
+  &.grid--rev { @include grid(flex, row-reverse); }
+}
+
+
+//  ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****  //
+
+
+//  [_3_] WIDTHS  //
+
+//  Column widths are specified using the map below. This makes the creation of
+//  grid repeats easier. A function fraction() is also opened up, allowing for
+//  quick access to the math through the rest of the project.
+
+$column-widths: (
+  '1':   100%,
+
+  '1/2': 50%,
+
+  '1/3': 33.333%,
+  '2/3': 66.666%,
+
+  '1/4': 25%,
+  '2/4': 50%,
+  '3/4': 75%,
+
+  '1/5': 20%,
+  '2/5': 40%,
+  '3/5': 60%,
+  '4/5': 80%,
+
+  '1/6': 16.666%,
+  '2/6': 33.333%,
+  '3/6': 50%,
+  '4/6': 66.666%,
+  '5/6': 83.333%,
+
+  '1/8': 12.5%,
+  '2/8': 25%,
+  '3/8': 37.5%,
+  '4/8': 50%,
+  '5/8': 62.5%,
+  '6/8': 75%,
+  '7/8': 87.5%,
+
+  '1/10': 10%,
+  '2/10': 20%,
+  '3/10': 30%,
+  '4/10': 40%,
+  '5/10': 50%,
+  '6/10': 60%,
+  '7/10': 70%,
+  '8/10': 80%,
+  '9/10': 90%,
+
+  '1/12':  8.333%,
+  '2/12':  16.666%,
+  '3/12':  25%,
+  '4/12':  33.333%,
+  '5/12':  41.666%,
+  '6/12':  50%,
+  '7/12':  58.333%,
+  '8/12':  66.666%,
+  '9/12':  75%,
+  '10/12': 83.333%,
+  '11/12': 91.666%
+);
+
+@function fraction($width) {
+  @return map-get($column-widths, $width);
+}
+
+
+//  ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****  //
+
+
+//  [_4_] SET GRIDS  //
+
+//  This grid system does not independently leave any open classes for use,
+//  however grid patterns are generated from the $set_grids map in _config.scss.
+
+@if variable-exists(set_grids) {
+
+  @each $grid in $set_grids {
+
+    $name: nth($grid, 1);                  // grid name
+    $default: explode(nth($grid, 2), ' '); // grid pattern
+    $queries: nth($grid, 3);               // media queries
+    $length: length($default);             // grid repeat
+
+    // Base grid styles - the class becomes .grid--{name}
+    .grid--#{$name} {
+
+      // if length == 1, every column is the same width by default
+      @if $length == 1 {
+
+        // Grid items change based on the parent - the class does not.
+        > .grid__item {
+          @include flex( map-get($column-widths, nth($default, 1)) );
+          max-width: map-get($column-widths, nth($default, 1));
+        }
+
+      // if length > 1 columns are different widths (uses nth-child selector)
+      } @else {
+        $v: $length;
+
+        @for $i from 1 through $length {
+          $v: $v - 1;
+          $str: ($length + n)-($v);
+
+          > .grid__item:nth-child(#{$str}) {
+            @include flex( map-get($column-widths, nth($default, $i)) );
+            max-width: map-get($column-widths, nth($default, $i));
+          }
+        }
+      }
+
+      // Default pattern complete, we now loop through each of the media queries
+      // stated and re-write the pattern. (This involves duplicating some code
+      // here in order to improve the outputted css later).
+      @each $name, $query in $queries {
+        @if $length == 1 {
+
+          > .grid__item {
+            @include bp($name) {
+              @include flex( map-get($column-widths, $query) );
+              max-width: map-get($column-widths, $query);
+            }
+          }
+
+        } @else {
+          $query: explode($query, ' ');
+          $v: $length;
+
+          @for $i from 1 through $length {
+            $v: $v - 1;
+            $str: ($length + n)-($v);
+
+            @include bp($name) {
+              > .grid__item:nth-child(#{$str}) {
+                @include flex( map-get($column-widths, nth($query, $i)) );
+                max-width: map-get($column-widths, nth($query, $i));
+              }
+            }
+          }
+
+        }
+
+      } // @each $queries repeater
+    } // end .grid--{name} class
+  } // end @each $grid_set repeater
+} // end @if variable-exists
+
+
+//  ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****  //

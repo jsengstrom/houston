@@ -1,0 +1,43 @@
+//  ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****  //
+//  ***** ***** *****                                     ***** ***** *****  //
+//  ***** ***** *****       COOKIE COMPLIANCE BANNER      ***** ***** *****  //
+//  ***** ***** *****                                     ***** ***** *****  //
+//  ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****  //
+
+//  In the EU it is required by law for all websites to disclose any any cookies
+//  they are using in the form of an informational pop-up. This module does
+//  exactly that.
+//
+//  DEPENDENCIES: /js/_houston/cookies.js
+
+
+//  ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****  //
+
+$cookie-color: null;
+
+@if map-has-key($colors, notify-warning) {
+  $cookie-color: color(notify-warning);
+} @else {
+  $cookie-color: $default-color;
+}
+
+.cookie-banner {
+  width: 100%;
+  max-width: 300px;
+  padding: 20px;
+  z-index: 99997;
+  opacity: 0.6;
+
+  color: darken($cookie-color, 50);
+  background: $cookie-color;
+  border: 1px solid darken($cookie-color, 15);
+  border-radius: 2px;
+
+  @include font-size(1, 1.6);
+  @include fixed(bottom 15px right 15px);
+
+  a, a:visited, a:hover {
+    color: darken($cookie-color, 35);
+    border-bottom: 1px dotted darken($cookie-color, 35);
+  }
+}
