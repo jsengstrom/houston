@@ -1,5 +1,5 @@
 # Houston - Yet Another Web Boilerplate
-*Version 0.1.0 - Beta*
+*Version 0.1.1 - Beta*
 
 Houston is a simple web boilerplate built to help get projects off the ground quickly. It tries to make as few assumptions as possible, while still providing enough of a head-start to make it worthwhile.
 

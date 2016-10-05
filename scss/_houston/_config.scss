@@ -144,19 +144,22 @@ $breakpoints: (
 
 $grid_gutter: 1.6;
 
+//  Set the default column width via the setting below (uses $h_units).
+
+$grid_col: 10;
+
 //  The grid system leaves a number of flexbox mixins available for use (read
 //  through base/grid.scss) to learn more. Here you can set any default grid
 //  patterns as required (common layouts have been provided).
 //
 //  This map produces the class: .grid--{key}
 //
-//  Syntax: key, 'col_pattern', (bp: 'bp_col_pattern', ...)
+//  Syntax: key, (default: 'col_pattern', bp: 'bp_col_pattern', ...), stretch
 
 $set_grids: (
-  (halves,   '1',   (lap: '1/2') ),
-  (thirds,   '1',   (portable: '1/3') ),
-  (quarters, '1',   (lap: '1/2', portable: '1/4') ),
-  (aside,    '1 1', (portable: '2/3 1/3') )
+  (thirds, (default: '1', lap: '1/2', portable: '1/3'), 0),
+  (quarters, (default: '1', lap: '1/2', portable: '1/4'), 0),
+  (aside, (default: '1', portable: (1: '2/3', 2: '1/3')), 0),
 );
 
 //  Containers set within the map below are based on the $h_unit measurement

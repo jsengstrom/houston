@@ -65,7 +65,7 @@ p:not(:last-child) { margin-bottom: rhythm(); }
 
 em, i { font-style: italic; }
 
-b, strong, h1, h2, h3, h4, h5, h6 { font-weight: bold; }
+b, strong { font-weight: bold; }
 
 s, strike, del { text-decoration: line-through; }
 
