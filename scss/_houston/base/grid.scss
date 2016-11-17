@@ -29,7 +29,7 @@
 .grid {
   display: flex;
   flex-wrap: wrap;
-  margin: -($grid_gutter + $h_units);
+  margin-left: -($grid_gutter + $h_units);
 
 	> * {
 	  flex: 1 0 ($grid_col + $h_units);

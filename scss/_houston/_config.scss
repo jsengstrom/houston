@@ -43,7 +43,7 @@ $font_stack: (
 //  * 1.618 - golden ratio
 
 $use_type_scale: true;
-$font_ratio: 1.333;
+$font_ratio: 1.25;
 
 //  Set the default type size for the site in rems. Units have been recalculated
 //  throughout the site so that 1rem == 10px.
@@ -54,7 +54,7 @@ $font_base:  1.6;
 //  in rem units to preserve the baseline grid. If this feature is turned off,
 //  line height is unitless, so becomes (x) * (current font size).
 
-$line_height_base: 1.8;
+$line_height_base: 2;
 
 //  Set font sizes for key elements below (<p> inherits $font_base). By default
 //  the number refers to it's position on the type scale. If $use_type_scale is
@@ -63,7 +63,7 @@ $line_height_base: 1.8;
 
 //  Uncomment below if $use_type_scale = true
 $font_sizes: (
-  h1: 3,
+  h1: 4,
   h2: 3,
   h3: 2,
   h4: 1,
