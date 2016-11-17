@@ -22,9 +22,8 @@ $cookie-color: null;
 }
 
 .cookie-banner {
-  width: 100%;
-  max-width: 300px;
-  padding: 20px;
+  width: calc(100% - 30px);
+  padding: 1em 1.5em;
   z-index: 99997;
   opacity: 0.6;
 
@@ -33,11 +32,15 @@ $cookie-color: null;
   border: 1px solid darken($cookie-color, 15);
   border-radius: 2px;
 
-  @include font-size(1, 1.6);
+  @include font-size(-1);
   @include fixed(bottom 15px right 15px);
 
   a, a:visited, a:hover {
     color: darken($cookie-color, 35);
     border-bottom: 1px dotted darken($cookie-color, 35);
+  }
+
+  @include bp(lap) {
+    max-width: 24em;
   }
 }

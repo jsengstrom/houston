@@ -9,7 +9,7 @@ function createDiv(){
   var div = document.createElement('div');
   div.setAttribute('id','cookie');
   div.className = 'cookie-banner';
-  div.innerHTML = '<p class="margin--none">We use cookies in order to give you the best experience of our website. <a href="/privacy">Read More.</a></p>';
+  div.innerHTML = '<p class="margin--none">We use cookies to give you the best experience of our website. <a href="/privacy">Read More.</a></p>';
 
   bodytag.appendChild(div);
   document.getElementsByTagName('body')[0].className+=' cookiebanner';

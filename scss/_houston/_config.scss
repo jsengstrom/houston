@@ -54,7 +54,7 @@ $font_base:  1.6;
 //  in rem units to preserve the baseline grid. If this feature is turned off,
 //  line height is unitless, so becomes (x) * (current font size).
 
-$line_height_base: 2;
+$line_height_base: 1.8;
 
 //  Set font sizes for key elements below (<p> inherits $font_base). By default
 //  the number refers to it's position on the type scale. If $use_type_scale is
