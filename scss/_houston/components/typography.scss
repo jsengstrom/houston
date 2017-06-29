@@ -46,28 +46,31 @@ body {
   @include font-size(0);
 
   &.baseline {
-    background-image: linear-gradient(to bottom, rgba(0,0,0,0) 97%, rgba(56,255,255,.8) 100%);
-	  background-size: 100% rhythm(0.98);
+    background-image: -webkit-linear-gradient(top, rgba(0,0,0,0) 95%, rgba(56,255,255,.5) 100%);
+	  background-size: 100% rhythm();
 	  background-position: 0 0;
+	  // background-position: 0 ($line_height_base * 0.75) + em;
   }
 }
 
-h1 { @include font-size(element-size(h1)); }
-h2 { @include font-size(element-size(h2)); }
-h3 { @include font-size(element-size(h3)); }
-h4 { @include font-size(element-size(h4)); }
-h5 { @include font-size(element-size(h5)); }
-h6 { @include font-size(element-size(h6)); }
-
+// Font family classes
 @each $name, $font in $font_stack {
-  .font--#{$name} { font-family: font-stack($name); }
+  .ff--#{$name} { font-family: font-stack($name); }
 }
 
-.font--large  { @include font-size(element-size(l)); }
-.font--small  { @include font-size(element-size(s)); }
+// Font size classes
+@each $name, $size in $font_sizes {
+  .fs--#{$name} { @include font-size($size); }
+}
 
-.text--right  { text-align: right; }
+// Heading elements
+@each $name, $size in $heading_sizes {
+  #{$name} { @include font-size(element-size($size)); }
+}
+
+.text--left   { text-align: left; }
 .text--center { text-align: center; }
+.text--right  { text-align: right; }
 
 p:not(:last-child) { margin-bottom: rhythm(); }
 

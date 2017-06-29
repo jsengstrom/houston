@@ -32,54 +32,38 @@
 //  EXAMPLE ($use_type_scale: false): @include font-size(1.6, 2.4);
 
 @mixin font-size($size, $height : null) {
-  @if $use_type_scale == true {
+  $line_height_base: $font_base * $line_height_base;
 
-    $line_height_base: $font_base * $line_height_base;
+  @if $size < 0 {
 
-    @if $size < 0 {
+    $calc: (1 / pow($font_ratio, -($size) )) * $font_base;
+    font-size: to-fixed($calc, 3)  + rem;
+    line-height: $line_height_base + rem;
 
-      $calc: (1 / pow($font_ratio, -($size) )) * $font_base;
-      font-size: to-fixed($calc, 3)  + rem;
-      line-height: $line_height_base + rem;
+  } @else if $size == 0 {
 
-    } @else if $size == 0 {
-
-      font-size: $font_base  + rem;
-      line-height: $line_height_base + rem;
-
-    } @else {
-
-      $calc: pow($font_ratio, $size) * $font_base;
-
-      $height: $line_height_base;
-      $n: 1;
-
-      @if $height < ($calc * 1.25) {
-        @while $height < ($calc * 1.25) {
-          $n: $n + 1;
-
-          $height: $line_height_base * $n;
-        }
-      }
-
-      font-size: to-fixed($calc, 3)  + rem;
-      line-height: $height + rem;
-
-    }
+    font-size: $font_base  + rem;
+    line-height: $line_height_base + rem;
 
   } @else {
 
-    @if $size == 0 {
-      font-size: $font_base + rem;
-    } @else {
-      font-size: $size + rem;
+    $calc: pow($font_ratio, $size) * $font_base;
+
+    $height: $line_height_base;
+    $n: 1;
+
+    @if $height < ($calc * 1.125) {
+      @while $height < ($calc * 1.125) {
+        $n: $n + 1;
+
+        $height: $line_height_base * $n;
+      }
     }
 
-    @if $height == null {
-      line-height: $line_height_base;
-    } @else {
-      line-height: $height;
-    }
+    $fixed_size: to-fixed($calc, 3);
+
+    font-size: $fixed_size + rem;
+    line-height: $height + rem;
 
   }
 }
