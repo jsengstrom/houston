@@ -5,27 +5,29 @@
 //  ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****  //
 
 //  There are three basic button styles; regular (.btn), ghost (.btn--ghost)
-//  and rounded (.btn--round), as well as three modifiers: large 9.btn--large,
+//  and rounded (.btn--round), as well as three modifiers: large (.btn--large),
 //  small (.btn--small) and block (.btn--block). These can be combined to
 //  produce a range of different outcomes.
 //
-//  Default buttons use the default color, however any color from the map can
-//  be used by adding the class: .btn--{color}
+//  Default buttons use the default button color, however any color from the map
+//  can be used by adding the class: .btn--{color}
 
 
 //  ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****  //
 
-[class*="btn"] {
-  background: $default-color;
-  color: color-contrast($default-color);
+.btn {
+  background: color($default_button_color);
+  color: color-contrast(color($default_button_color));
   display: inline-block;
   text-decoration: none;
   border-radius: 2px;
   padding: 0.5em 1.5em;
   transition: background 0.3s ease;
+  cursor: pointer;
 
   &:hover {
-    background: darken($default-color, 10);
+    background: darken(color($default_button_color), 10);
+    color: color-contrast(color($default_button_color));
   }
 }
 
@@ -38,12 +40,12 @@
 
 .btn--ghost {
   background: none;
-  border: 2px solid $default-color;
-  color: $default-color;
+  border: 2px solid color($default_button_color);
+  color: color($default_button_color);
   transition: background 0.3s ease, color 0.3s ease;
 
   &:hover {
-    background: $default-color;
+    background: color($default_button_color);
     color: white;
   }
 
@@ -68,6 +70,7 @@
 
     &:hover {
       background: darken($color, 10);
+      color: color-contrast($color);
     }
   }
 }

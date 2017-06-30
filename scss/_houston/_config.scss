@@ -100,10 +100,11 @@ $heading_sizes: (
 //  Project colors are specified here. Add and remove colors to the map as
 //  required. First item is default.
 //
-//  Colors have two classes generated, and also a buton modifier:
+//  Colors have three classes generated, and also a button modifier:
 //
 //  .color--{key} = applies text color
 //  .bg--{key} = applies background color
+//  .border--{key} = applies border color
 //  .btn--{key} = applies background color with calculated contrasting text color
 
 $colors: (
@@ -114,9 +115,15 @@ $colors: (
   dark:       #595959,
 );
 
+//  Set the key element colors below, using the key from the list above.
+
+$default_text_color:   dark;
+$default_link_color:   primary;
+$default_button_color: primary;
+
 //  Notification colors often don't appear elsewhere in the site, so have been
 //  spearated into the below map. Each key generates '.notification--{key}'.
-//  If you wanted to utilise one of the colors above in a dry way, reference the
+//  If you wanted to utilise one of the colors above in a DRY way, reference the
 //  map like so: @return map-get($colors, {key})
 
 $notifications: (

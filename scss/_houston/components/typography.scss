@@ -25,12 +25,7 @@
 %font-stack {
   font-family: $default-font;
   font-size: 62.5%;  // Important for the math to work.
-
-  @if map-has-key($colors, dark) {
-    color: color(dark);
-  } @else {
-    color: black;
-  }
+  color: color($default_text_color);
 
   @include bp(lap) { font-size: 67.5%; }
   @include bp(portable) { font-size: 72.5%; }
@@ -73,21 +68,16 @@ body {
 
 p:not(:last-child) { margin-bottom: rhythm(); }
 
-em, i { font-style: italic; }
+em, i, .text--italic { font-style: italic; }
+b, strong, .text--bold { font-weight: bold; }
+s, strike, del, .text--strike { text-decoration: line-through; }
+u, .text--underline { text-decoration: underline; }
 
-b, strong { font-weight: bold; }
-
-s, strike, del { text-decoration: line-through; }
-
-u { text-decoration: underline; }
-
-a:not([class*="btn"]) { // FIX
-  color: $default-color;
-  text-decoration: underline;
+a {
+  color: color($default_link_color);
   transition: color 0.3s ease;
 
-  &:visited { color: lighten($default-color, 18); }
-  &:hover { color: darken($default-color, 18); }
+  &:hover { color: darken(color($default_link_color), 18); }
 }
 
 //  Rhythm classes
@@ -135,6 +125,22 @@ $cont-i: 0;
     .rhythm-m#{$letter}#{$ext} { margin-#{$direction}: rhythm($multiple); }
     .rhythm-p#{$letter}#{$ext} { padding-#{$direction}: rhythm($multiple); }
   }
+}
+
+// border thicknesses
+.border--thin  {
+  border-style: solid;
+  border-width: 0.1rem;
+}
+
+.border--mid   {
+  border-style: solid;
+  border-width: 0.2rem;
+}
+
+.border--thick {
+  border-style: solid;
+  border-width: 0.4rem;
 }
 
 
@@ -209,17 +215,8 @@ code, pre {
     font-family: font-stack(mono);
   }
 
-  @if map-has-key($colors, dark) {
-    color: lighten(color(dark), 20);
-  }
-
-  @if map-has-key($colors, neutral) {
-    border: 1px solid color(neutral);
-    background: lighten(color(neutral), 10);
-  } @else {
-    border: 1px solid;
-  }
-
+  color: lighten(color($default_text_color), 20);
+  border: 1px solid;
   border-radius: 2px;
 }
 
@@ -243,14 +240,14 @@ pre {
 hr {
   margin: 50px 80% 50px 0;
   border: 0;
-  background: $default-color;
+  background: color($default_text_color);
   height: 2px;
 }
 
 //  Controls the highlight color of text in the browser. Doesn't work everywhere.
 
-::selection { background: lighten($default-color, 40); }
-::-moz-selection { background: lighten($default-color, 40); }
+::selection { background: lighten(color($default_link_color), 40); }
+::-moz-selection { background: lighten(color($default_link_color), 40); }
 
 
 //  ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****  //
