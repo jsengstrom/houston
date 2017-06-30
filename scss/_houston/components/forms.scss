@@ -17,7 +17,7 @@ textarea, select {
 
   font-family: $default-font;
   width: 100%;
-  padding: 10px;
+  padding: 0.5em 1em;
   border-radius: 2px;
   margin-bottom: rhythm(0.5);
   position: relative;
@@ -25,14 +25,8 @@ textarea, select {
   background: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-
-  @if map-has-key($colors, neutral) {
-    color: darken(color(neutral), 30);
-    border: 1px solid color(neutral);
-  } @else {
-    color: darken(black, 30);
-    border: 1px solid black;
-  }
+  color: color($default_text_color);
+  border: 1px solid color($default_text_color);
 
   &:focus {
     outline: none;
