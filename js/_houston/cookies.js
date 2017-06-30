@@ -1,15 +1,20 @@
+//  COOKIE BANNER
+
+//  In accordance with EU regulations, this file includes a cookie banner within
+//  your project.
+
 var dropCookie = true;
 var cookieDuration = 14;
-var cookieFadeout = 5000;
 var cookieName = 'complianceCookie';
 var cookieValue = 'on';
+var privacyLink = '/privacy';
 
 function createDiv(){
   var bodytag = document.getElementsByTagName('body')[0];
   var div = document.createElement('div');
   div.setAttribute('id','cookie');
-  div.className = 'cookie-banner';
-  div.innerHTML = '<p class="margin--none">We use cookies to give you the best experience of our website. <a href="/privacy">Read More.</a></p>';
+  div.className = 'notification--cookie notification--bottom load-fadeout--4';
+  div.innerHTML = '<div class="container"><div class="notification__content fs--6 rhythm-pa">We use cookies to give you the best experience of our website. <a href="' + privacyLink + '">Read More.</a></div></div>';
 
   bodytag.appendChild(div);
   document.getElementsByTagName('body')[0].className+=' cookiebanner';
@@ -47,12 +52,6 @@ jQuery(document).ready(function(){
 
   if(checkCookie(window.cookieName) != window.cookieValue){
     createDiv();
-    window.setTimeout(function() {
-    jQuery('#cookie').fadeOut();
-    }, cookieFadeout);
-  jQuery("#cookie").click(function(){
-    jQuery("#cookie").fadeOut();
-  });
   }
 
 });

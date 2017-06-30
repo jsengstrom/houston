@@ -52,9 +52,7 @@ $line_height_base: 2;
 
 //  The vertical rhythm of the site becomes '$font_base' * '$line_height_base'
 //  These classes are produced in multiples as laid out in the map below (first
-//  element becomes default, so has no modifier).
-//
-//  Margin/Padding classes:
+//  element becomes default, so has no modifier). Classes generated:
 //  .rhythm-{m/p}a--{key} - all
 //  .rhythm-{m/p}v--{key} - vertical (top/bottom)
 //  .rhythm-{m/p}h--{key} - horizontal (left/right)
@@ -100,24 +98,38 @@ $heading_sizes: (
 //  [_2_} COLORS  //
 
 //  Project colors are specified here. Add and remove colors to the map as
-//  required. First item is default. There must be at least one color, but
-//  for best support use: primary, accent, dark & notify-warning.
+//  required. First item is default.
 //
-//  Colors have two classes generated:
+//  Colors have two classes generated, and also a buton modifier:
 //
 //  .color--{key} = applies text color
-//  .bg--{key} = applied background color
+//  .bg--{key} = applies background color
+//  .btn--{key} = applies background color with calculated contrasting text color
 
 $colors: (
-  primary:        #b79a6f,
-  secondary:      #9BC1BC,
-  accent:         #ED6A5A,
-  neutral:        #DBD9DD,
-  dark:           #595959,
-  notify-failed:  #BE4C4C,
-  notify-warning: #EAC282,
-  notify-success: #8CC36E
+  primary:    #B79A6F,
+  secondary:  #9BC1BC,
+  accent:     #ED6A5A,
+  neutral:    #DBD9DD,
+  dark:       #595959,
 );
+
+//  Notification colors often don't appear elsewhere in the site, so have been
+//  spearated into the below map. Each key generates '.notification--{key}'.
+//  If you wanted to utilise one of the colors above in a dry way, reference the
+//  map like so: @return map-get($colors, {key})
+
+$notifications: (
+  failed:    #BE4C4C,
+  warning:   #EAC282,
+  success:   #8CC36E
+);
+
+//  If enabled with the project's javascript, a EU compliant cookie banner is
+//  shown to users. Reference the key from the notifications map above to set
+//  the color of this banner. set this to null to remove cookie banner.
+
+$cookie_banner_color: warning;
 
 
 //  ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****  //
