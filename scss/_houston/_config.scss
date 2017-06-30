@@ -45,10 +45,30 @@ $font_ratio: 1.25;
 
 //  Set the default type size for the site in rems. Units have been recalculated
 //  throughout the site so that 1rem == 10px. Set the global line height here in
-//  rems to preserve the baseline grid.
+//  rems to preserve the baseline grid as best as possible.
 
 $font_base:  1.6;
 $line_height_base: 2;
+
+//  The vertical rhythm of the site becomes '$font_base' * '$line_height_base'
+//  These classes are produced in multiples as laid out in the map below (first
+//  element becomes default, so has no modifier).
+//
+//  Margin/Padding classes:
+//  .rhythm-{m/p}a--{key} - all
+//  .rhythm-{m/p}v--{key} - vertical (top/bottom)
+//  .rhythm-{m/p}h--{key} - horizontal (left/right)
+//  .rhythm-{m/p}t--{key} - top
+//  .rhythm-{m/p}r--{key} - right
+//  .rhythm-{m/p}b--{key} - bottom
+//  .rhythm-{m/p}l--{key} - left
+
+$rhythm_multiples: (
+  base: 1,
+  half: 0.5,
+  double: 2,
+  huge: 4
+);
 
 //  Set font sizes below, each generates a class '.fs--{key}'. The value here
 //  refers to it's position on the type scale.
@@ -80,7 +100,7 @@ $heading_sizes: (
 //  [_2_} COLORS  //
 
 //  Project colors are specified here. Add and remove colors to the map as
-//  required. First item is default. There must be  at least one color, but
+//  required. First item is default. There must be at least one color, but
 //  for best support use: primary, accent, dark & notify-warning.
 //
 //  Colors have two classes generated:

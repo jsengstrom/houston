@@ -49,7 +49,6 @@ body {
     background-image: -webkit-linear-gradient(top, rgba(0,0,0,0) 95%, rgba(56,255,255,.5) 100%);
 	  background-size: 100% rhythm();
 	  background-position: 0 0;
-	  // background-position: 0 ($line_height_base * 0.75) + em;
   }
 }
 
@@ -82,7 +81,7 @@ s, strike, del { text-decoration: line-through; }
 
 u { text-decoration: underline; }
 
-a:not([class*="btn"]) {
+a:not([class*="btn"]) { // FIX
   color: $default-color;
   text-decoration: underline;
   transition: color 0.3s ease;
@@ -91,9 +90,52 @@ a:not([class*="btn"]) {
   &:hover { color: darken($default-color, 18); }
 }
 
-.rhythm--half { margin-bottom: rhythm(0.5); }
-.rhythm { margin-bottom: rhythm(); }
-.rhythm--double { margin-bottom: rhythm(2); }
+//  Rhythm classes
+$cont-i: 0;
+
+@each $name, $multiple in $rhythm_multiples {
+  $cont-i: $cont-i + 1;
+  $ext: null;
+
+  @if $cont-i != 1 {
+    $ext: '--' + $name;
+  }
+
+  .rhythm-ma#{$ext} { margin: rhythm($multiple); }
+  .rhythm-pa#{$ext} { padding: rhythm($multiple); }
+
+  .rhythm-mv#{$ext} {
+    margin-top: rhythm($multiple);
+    margin-bottom: rhythm($multiple);
+  }
+
+  .rhythm-pv#{$ext} {
+    padding-top: rhythm($multiple);
+    padding-bottom: rhythm($multiple);
+  }
+
+  .rhythm-mh#{$ext} {
+    margin-left: rhythm($multiple);
+    margin-right: rhythm($multiple);
+  }
+
+  .rhythm-ph#{$ext} {
+    margin-left: rhythm($multiple);
+    margin-right: rhythm($multiple);
+  }
+
+  $directions: (
+    top: t,
+    bottom: b,
+    left: l,
+    right: r,
+  );
+
+  @each $direction, $letter in $directions {
+    .rhythm-m#{$letter}#{$ext} { margin-#{$direction}: rhythm($multiple); }
+    .rhythm-p#{$letter}#{$ext} { padding-#{$direction}: rhythm($multiple); }
+  }
+}
 
 
 //  ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****  //
